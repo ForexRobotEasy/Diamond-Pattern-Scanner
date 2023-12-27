@@ -1,0 +1,63 @@
+
+// Diamond Pattern Scanner
+// Developer: Forex Robot Easy Team
+// Website: forexroboteasy.com
+
+// Function to scan for diamond patterns across all symbols and time frames
+void scanDiamondPatterns() {
+    // Get all symbols
+    string[] symbols = SymbolsTotal();
+    
+    // Loop through all symbols
+    for(int i = 0; i < ArraySize(symbols); i++) {
+        string symbol = symbols[i];
+        
+        // Get all time frames
+        ENUM_TIMEFRAMES[] timeframes = {PERIOD_M1, PERIOD_M5, PERIOD_M15, PERIOD_M30, PERIOD_H1, PERIOD_H4, PERIOD_D1, PERIOD_W1, PERIOD_MN1};
+        
+        // Loop through all time frames
+        for(int j = 0; j < ArraySize(timeframes); j++) {
+            ENUM_TIMEFRAMES timeframe = timeframes[j];
+            
+            // Switch to the symbol and time frame
+            ChartSetSymbolPeriod(0, symbol, timeframe);
+            
+            // Perform technical analysis
+            // Your technical analysis code here
+            
+            // Check for diamond pattern
+            if(isDiamondPattern()) {
+                // Your trading strategy code here for diamond pattern
+                
+                // Log the pattern details
+                Print('Diamond pattern found on symbol: ', symbol, ' Timeframe: ', EnumToString(timeframe));
+            }
+        }
+    }
+}
+
+// Function to check if a diamond pattern is present
+bool isDiamondPattern() {
+    // Your diamond pattern detection algorithm here
+    // Return true if pattern is found, false otherwise
+}
+
+// Main entry point
+int OnInit() {
+    // Perform any initialization tasks here
+    
+    // Call the function to scan for diamond patterns
+    scanDiamondPatterns();
+    
+    return(INIT_SUCCEEDED);
+}
+
+// Other necessary trading functions here
+
+// Program entry point
+void OnStart() {
+    // Your trading logic here
+    
+    // Code conclusion
+    Print('Diamond Pattern Scanner completed successfully.');
+}
